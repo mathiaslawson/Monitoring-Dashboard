@@ -16,7 +16,7 @@ function Index() {
 
   return (
     <>
-      {/* <div className="d-flex m-2 mt-4 gap-2 mx-2" style={{ flexWrap: "wrap" }}>
+      <div className="d-flex m-2 mt-4 gap-2 mx-2" style={{ flexWrap: "wrap" }}>
         {chartData.map((dataObj, index) => (
           <ChartComponent
             key={index}
@@ -33,7 +33,7 @@ function Index() {
             color={dataObj.color}
           />
         ))}
-      </div> */}
+      </div>
     </>
   );
 }
