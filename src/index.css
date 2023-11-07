@@ -42,9 +42,12 @@ background-color:#151818 ;
 
 /* Style for the active tab's content */
 .tab-content .tab-pane.active {
-  background-color: #f0f0f0; /* Change to your desired content background color for the active tab */
+  background-color: #0c0f0f; /* Change to your desired content background color for the active tab */
   /* Add other styles as needed for the active tab's content */
 }
+
+
+
 
 
 
