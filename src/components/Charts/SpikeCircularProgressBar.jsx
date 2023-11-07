@@ -1,74 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import EasyPieChart from "../../plugin/easypiechart"; // Update the import path as needed
-import { Card, CardBody, Col, Row } from "reactstrap";
+///import React from 'react'
 
-function ChartComponent({ data, color }) {
-  const chartRef = useRef(null);
-  const chartInstance = useRef(null);
-  const contentRef = useRef(null);
-
-  useEffect(() => {
-    if (!chartInstance.current) {
-      // Initialize the chart only if it hasn't been created yet
-      chartInstance.current = new EasyPieChart(chartRef.current, {
-        barColor: color,
-        trackColor: "#353f3f",
-        size: "260",
-        lineWidth: "10",
-      });
-    }
-
-    // Update the chart when the data-percent attribute changes
-    if (chartInstance.current) {
-      const newPercent = parseFloat(
-        chartRef.current.getAttribute("data-percent")
-      );
-      chartInstance.current.update(newPercent);
-
-      // Calculate and set the position of the content within the chart
-      const chartSize = chartRef.current.clientWidth;
-      const contentSize = contentRef.current.clientWidth;
-      const position = (chartSize - contentSize) / 2;
-      contentRef.current.style.left = `${position}px`;
-    }
-  }, [color, data]);
-
+function SpikeCircularProgressBar() {
   return (
-    <Card
-      className="col-md-2"
-      style={{
-        position: "",
-        backgroundColor: "#151818",
-        borderRadius: "3px",
-        width: "max-content",
-      }}
-    >
-      <CardBody>
-        <p className="text-center" style={{ color: "gray" }}>
-          Average CPU per Node{" "}
-        </p>
-        <Row>
-          <Col>
-            <div
-              data-percent={data}
-              className="chart"
-              ref={chartRef}
-              style={{ color: "white", position: "relative" }}
-            >
-              <div
-                ref={contentRef}
-                style={{ position: "absolute", color: "gray" }}
-                className="mt-5 fw-bolder"
-              >
-                <p className="text-center mt-5">{data}</p>
-                <p style={{ color: "#353f3f" }}>mb/s</p>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </CardBody>
-    </Card>
-  );
+    <div>SpikeCircularProgressBar</div>
+  )
 }
 
-export default ChartComponent;
+export default SpikeCircularProgressBar
