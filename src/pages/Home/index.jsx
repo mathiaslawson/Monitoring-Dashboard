@@ -4,6 +4,7 @@ import classnames from "classnames";
 import { useState } from "react";
 import SpikeCircularProgressBar from "../../components/Charts/SpikeCircularProgressBar";
 import SpeedometerComponent from "../../components/Charts/Speedometer";
+import HomePage from '../HomePage'
 
 function Index() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -106,9 +107,9 @@ function Index() {
               <TabPane tabId="tab1">
                 <Row>
                   <Col sm="12">
-                    <h4>Home Content</h4>
-                    <SpikeCircularProgressBar />
-                    <SpeedometerComponent />
+                  
+                <HomePage />
+                    
                   </Col>
                 </Row>
               </TabPane>
