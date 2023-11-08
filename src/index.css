@@ -15,8 +15,9 @@ body {
 
 /* YourComponent.css */
 ul li:hover {
-  background-color: #707070; 
+  background-color: #212529; 
   cursor: pointer;
+ 
 }
 
 
@@ -28,6 +29,12 @@ ul li:hover {
  width: max-content;
   text-align: center;
   color: gray;
+  border-bottom: 1px solid black;
+}
+
+.nav-tabs .nav-item .nav-link:hover {
+ 
+  border: 1px solid black;
 }
 
 /* Style for the active tab's link */
@@ -38,12 +45,14 @@ border-top: 2px solid #00d084;
 background-color:#151818 ;
   color: #fff; /* Change to your desired text color for the active tab */
   /* Add other styles as needed for the active tab */
+  border-bottom: 1px solid black;
 }
 
 /* Style for the active tab's content */
 .tab-content .tab-pane.active {
   background-color: #0c0f0f; /* Change to your desired content background color for the active tab */
   /* Add other styles as needed for the active tab's content */
+  border-bottom: 1px solid black;
 }
 
 

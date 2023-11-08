@@ -18,10 +18,10 @@ function Index() {
 
   return (
     <>
-      <Col md={12} xl={12} style={{}}>
+      <Col md={12} xl={12} >
         <div className="content">
           <div>
-            <Nav tabs>
+            <Nav tabs style={{borderBottom: 'black'}}>
               <NavItem>
                 <NavLink
                   className={classnames({ active: activeTab === "tab1" })}

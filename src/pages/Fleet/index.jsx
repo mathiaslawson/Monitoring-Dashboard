@@ -29,7 +29,7 @@ function Index() {
       <Col md={12} xl={12} style={{}} className="mt-5">
         <div className="content">
           <div>
-            <Nav tabs>
+            <Nav tabs  style={{borderBottom: 'black'}}>
               <NavItem>
                 <NavLink
                   className={classnames({ active: activeTab === "tab1" })}
