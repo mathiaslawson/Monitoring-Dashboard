@@ -2,9 +2,10 @@ import { Col } from "reactstrap";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row } from "reactstrap";
 import classnames from "classnames";
 import { useState } from "react";
-import SpikeCircularProgressBar from "../../components/Charts/SpikeCircularProgressBar";
-import SpeedometerComponent from "../../components/Charts/Speedometer";
-import HomePage from '../HomePage'
+//import SpikeCircularProgressBar from "../../components/Charts/SpikeCircularProgressBar";
+//import SpeedometerComponent from "../../components/Charts/Speedometer";
+import HomePage from "../HomePage";
+import Fleet from "../Fleet";
 
 function Index() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -102,14 +103,21 @@ function Index() {
                   Events
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: activeTab === "tab10" })}
+                  onClick={() => toggleTab("tab10")}
+                >
+                  <i className="bx bx-message-square-detail mx-1"></i>
+                  Fleet
+                </NavLink>
+              </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="tab1">
                 <Row>
                   <Col sm="12">
-                  
-                <HomePage />
-                    
+                    <HomePage />
                   </Col>
                 </Row>
               </TabPane>
@@ -174,6 +182,13 @@ function Index() {
                   <Col sm="12">
                     <h4>Events</h4>
                     {/* Add your content for Tab 3 here */}
+                  </Col>
+                </Row>
+              </TabPane>
+              <TabPane tabId="tab10">
+                <Row>
+                  <Col sm="12">
+                    <Fleet />
                   </Col>
                 </Row>
               </TabPane>
