@@ -10,6 +10,8 @@ import {
 import classnames from "classnames";
 import { useState } from "react";
 import Agents from "./Agent/Agents";
+import AgentPolices from './AgentPolicy/index'
+import EnrollmentTokens from './EnrollmentTokens/index'
 
 function Index() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -78,16 +80,14 @@ function Index() {
               <TabPane tabId="tab2">
                 <Row>
                   <Col sm="12">
-                    <h4>Agents policies</h4>
-                    {/* Add your content for Tab 2 here */}
+                    <AgentPolices />
                   </Col>
                 </Row>
               </TabPane>
               <TabPane tabId="tab3">
                 <Row>
                   <Col sm="12">
-                    <h4>Enrollment Tokens</h4>
-                    {/* Add your content for Tab 3 here */}
+                    <EnrollmentTokens />
                   </Col>
                 </Row>
               </TabPane>

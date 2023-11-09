@@ -5,39 +5,31 @@ function Index() {
   const data = [
     {
       id: "1",
-      name: "CAL-DR_Docker_GTM-01",
-      rev: "rev. 218",
-      description: "THis is for agents that us the GTM as its DNS",
-      latestUpdate: "Nov 09, 2023",
-      agents: "1",
-      integrations: "203",
+      name: "CalPay-DR-Server (4c6934_232_q22)",
+      secret: "",
+      agentPolicy: "CAL-DR-Docker-CalPayDMZ",
+      createdOn: "Nov 09, 2023",
     },
     {
       id: "2",
-      name: "CAL-HQ_Docker_one",
-      rev: "rev. 218",
-      description: "THis is for agents that us the GTM as its DNS",
-      latestUpdate: "Nov 09, 2023",
-      agents: "1",
-      integrations: "203",
+      name: "Default(4c6934_232_q22_2as23_2323s)",
+      secret: "",
+      agentPolicy: "CAL-DR-Docker-CalPayDMZ",
+      createdOn: "Nov 09, 2023",
     },
     {
       id: "3",
-      name: "GIP Token",
-      rev: "rev. 218",
-      description: "THis is for agents that us the GTM as its DNS",
-      latestUpdate: "Nov 09, 2023",
-      agents: "1",
-      integrations: "203",
+      name: "HQ-Without-GTM (7aa2332-23asa-2aas23)",
+      secret: "",
+      agentPolicy: "CAL-DR-Docker-CalPayDMZ",
+      createdOn: "Nov 09, 2023",
     },
     {
       id: "4",
-      name: "Elatice ",
-      rev: "rev. 218",
-      description: "THis is for agents that us the GTM as its DNS",
-      latestUpdate: "Nov 09, 2023",
-      agents: "1",
-      integrations: "203",
+      name: "DR-Enroll (eabsa2-as23as-sa2323-asas-as2323)",
+      secret: "",
+      agentPolicy: "CAL-DR-Docker-CalPayDMZ",
+      createdOn: "Nov 09, 2023",
     },
   ];
 
@@ -49,11 +41,11 @@ function Index() {
     },
 
     {
-      name: "Description",
+      name: "Secret",
       selector: (row) => (
         <>
           <div className="" style={{ width: "300px" }}>
-            <p style={{ color: "#4694d2" }}>{row.description}</p>
+            <p style={{ color: "#4694d2" }}>{row.secret}</p>
             <p>{row.rev}</p>
           </div>
         </>
@@ -62,20 +54,27 @@ function Index() {
       right: true,
     },
     {
-      name: "Latest update",
-      selector: (row) => row.latestUpdate,
+      name: "Agent policy",
+      selector: (row) => row.agentPolicy,
       sortable: true,
       right: true,
     },
     {
-      name: "Agents",
-      selector: (row) => row.agents,
+      name: "Created on",
+      selector: (row) => row.createdOn,
       sortable: true,
       right: true,
     },
     {
-      name: "Integrations",
-      selector: (row) => row.integrations,
+      name: "Active",
+      selector: (row) => (
+        <>
+          <i
+            className="bx bx-radio-circle-marked"
+            style={{ color: "green" }}
+          ></i>
+        </>
+      ),
       sortable: true,
       right: true,
     },
@@ -98,7 +97,7 @@ function Index() {
                 border: "none",
               }}
             >
-              <i className="bx bx-dots-horizontal"></i>
+              <i className="bx bx-trash" style={{ color: "red" }}></i>
             </button>
           </div>
         </div>
@@ -138,7 +137,6 @@ function Index() {
                 Create agent policy
               </Button>
             </div>
-           
           </div>
         </div>
         <TableComponent data={data} columns={columns}></TableComponent>

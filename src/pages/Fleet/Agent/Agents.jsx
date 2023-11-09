@@ -1,6 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import DataTable from "react-data-table-component";
 import movies from "../movies";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "bootstrap/dist/css/bootstrap.css";
@@ -127,6 +124,7 @@ function Agents() {
                 className="btn"
                 style={{ color: "gray", backgroundColor: "#2d3535" }}
               >
+                <i className="bx bx-time-five mx-1"></i>
                 Agent activity
               </Button>
             </div>
