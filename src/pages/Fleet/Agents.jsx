@@ -1,543 +1,355 @@
-import {
-  Button,
-  Col,
-  Container,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Input,
-  Row,
-  Table,
-} from "reactstrap";
+import React from "react";
+import ReactDOM from "react-dom";
+import DataTable from "react-data-table-component";
+import movies from "./movies";
+import "bootstrap/dist/js/bootstrap.bundle.js";
+import "bootstrap/dist/css/bootstrap.css";
+import "./style.css";
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
+function getNumberOfPages(rowCount, rowsPerPage) {
+  return Math.ceil(rowCount / rowsPerPage);
+}
 
-function Agents() {
-  const [selectedExport, setSelectedExport] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+function toPages(pages) {
+  const results = [];
 
-  const handleExportChange = (value) => {
-    setSelectedExport(value);
+  for (let i = 1; i < pages; i++) {
+    results.push(i);
+  }
+
+  return results;
+}
+
+const customStyles = {
+  table: {
+    styl: {
+      border: "none", // Remove the border
+      borderRadius: "0px", // Set border-radius to 0 for sharp edges
+      padding: "10px", // Optional: Add padding for better visual appearance
+    },
+  },
+  tableWrapper: {
+    style: {
+      display: "table",
+      border: "none",
+    },
+  },
+
+  rows: {
+    style: {
+      fontSize: "13px",
+      fontWeight: 600,
+      fontFamily: "monospace",
+      color: "gray",
+      backgroundColor: "#080a0a",
+      minHeight: "61px",
+      "&:not(:last-of-type)": {
+        borderBottomStyle: "solid",
+        borderBottomWidth: "1px",
+        borderBottomColor: "#0c0f0f",
+      },
+    },
+    denseStyle: {
+      minHeight: "32px",
+    },
+    selectedHighlightStyle: {
+      // use nth-of-type(n) to override other nth selectors
+      "&:nth-of-type(n)": {
+        color: "black",
+        backgroundColor: "",
+        borderBottomColor: "magenta",
+      },
+    },
+    highlightOnHoverStyle: {
+      color: "gray",
+      backgroundColor: "white",
+      transitionDuration: "0.15s",
+      transitionProperty: "background-color",
+      borderBottomColor: "brown",
+      outlineStyle: "solid",
+      outlineWidth: "1px",
+      outlineColor: "gold",
+    },
+    stripedStyle: {
+      color: "green",
+      backgroundColor: "yellow",
+    },
+  },
+  expanderRow: {
+    style: {
+      color: "",
+      backgroundColor: "blue",
+    },
+  },
+  expanderCell: {
+    style: {
+      flex: "0 0 48px",
+    },
+  },
+  expanderButton: {
+    style: {
+      color: "",
+      fill: "green",
+      backgroundColor: "transparent",
+      borderRadius: "2px",
+      transition: "0.25s",
+      height: "100%",
+      width: "100%",
+      "&:hover:enabled": {
+        cursor: "pointer",
+      },
+      "&:disabled": {
+        color: "magenta",
+      },
+      "&:hover:not(:disabled)": {
+        cursor: "pointer",
+        backgroundColor: "magenta",
+      },
+      "&:focus": {
+        outline: "none",
+        backgroundColor: "magenta",
+      },
+      svg: {
+        margin: "auto",
+      },
+    },
+  },
+  headCells: {
+    style: {
+      backgroundColor: "#212727",
+      color: "gray",
+      fontFamily: "monospace",
+      fontSize: "14px",
+      // border: "1px solid #0c0f0f",
+    },
+  },
+  stripedStyle: {
+    color: "",
+    backgroundColor: "green",
+  },
+  header: {
+    style: {
+      fontSize: "22px",
+      backgroundColor: "#212727",
+      minHeight: "56px",
+      paddingLeft: "16px",
+      paddingRight: "8px",
+      border: "1px solid #0c0f0f ",
+    },
+  },
+  cells: {
+    style: {
+      paddingLeft: "8px", // override the cell padding for data cells
+      paddingRight: "8px",
+    },
+  },
+};
+
+const columns = [
+  {
+    name: "Host",
+    selector: (row) => <p style={{color: '#4694d2'}}>{row.host}t</p>,
+    sortable: true,
+  },
+
+  {
+    name: "Status",
+    button: true,
+    cell: () => (
+      <div className="App">
+        <div className="openbtn text-center">
+          <button
+            type="button"
+            className="btn btn-primary mt-3"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            style={{
+              backgroundColor: "#00d084",
+              color: "black",
+              border: "none",
+            }}
+          >
+            Healthy
+          </button>
+        </div>
+      </div>
+    ),
+  },
+
+  {
+    name: "Agent policy",
+    selector: (row) => row.agent_policy,
+    sortable: true,
+    right: true,
+  },
+  {
+    name: "Version",
+    selector: (row) => row.version,
+    sortable: true,
+    right: true,
+  },
+  {
+    name: "Last activity",
+    selector: (row) => row.last_activity,
+    sortable: true,
+    right: true,
+  },
+  {
+    name: "Actions",
+    selector: (row) => row.runtime,
+    sortable: true,
+    cell: () => (
+      <div className="App">
+        <div className="openbtn text-center">
+          <button
+            type="button"
+            className="btn fs-3 mt-3"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            style={{
+              backgroundColor: "",
+              color: "white",
+              border: "none",
+            }}
+          >
+           <i className="bx bx-dots-horizontal"></i>
+          </button>
+        </div>
+      </div>
+    ),
+  },
+];
+
+const conditionalRowStyles = [
+  {
+    when: (row) => row.id % 2 === 0,
+    style: {
+      backgroundColor: "#212727", // Light color for even rows
+      border: "1px solid black",
+      borderRadius: "0px",
+    },
+  },
+  {
+    when: (row) => row.id % 2 !== 0,
+    style: {
+      backgroundColor: "#080a0a",
+      borderRadius: "0px",
+      border: "1px solid black", // White color for odd rows
+    },
+  },
+];
+
+// RDT exposes the following internal pagination properties
+const BootyPagination = ({
+  rowsPerPage,
+  rowCount,
+  onChangePage,
+  onChangeRowsPerPage, // available but not used here
+  currentPage,
+}) => {
+  const handleBackButtonClick = () => {
+    onChangePage(currentPage - 1);
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const handleNextButtonClick = () => {
+    onChangePage(currentPage + 1);
   };
+
+  const handlePageNumber = (e) => {
+    onChangePage(Number(e.target.value));
+  };
+
+  const pages = getNumberOfPages(rowCount, rowsPerPage);
+  const pageItems = toPages(pages);
+  const nextDisabled = currentPage === pageItems.length;
+  const previosDisabled = currentPage === 1;
 
   return (
-    <>
-      <div className="m-3">
-        <Row>
-          <Col xl={7} md={3}>
-            <Input
-              type="text"
-              className="form-contorl text-dark p-3"
-              placeholder="Search ..."
-              style={{ backgroundColor: "#e0e0e0", color: "black" }}
-            ></Input>
-          </Col>
-          <Col>
-            <Input
-              type="select"
-              className="form-contorl text-dark p-3"
-              placeholder="Search ..."
-              style={{ backgroundColor: "#e0e0e0", color: "black" }}
-            >
-              <option>Status</option>
-            </Input>
-          </Col>
-          <Col>
-            <Input
-              type="select"
-              className="form-contorl text-dark p-3"
-              placeholder="Search ..."
-              style={{ backgroundColor: "#e0e0e0", color: "black" }}
-            >
-              <option>Agent Policy</option>
-            </Input>
-          </Col>
-          <Col>
-            <Button
-              className="p-3 btn w-100"
-              style={{ backgroundColor: "#212529" }}
-            >
-              Upgrade available
-            </Button>
-          </Col>
-          <Col>
-            <Button
-              className="btn p-3 w-100"
-              style={{ backgroundColor: "#212529" }}
-            >
-              <i className="bx bx-plus"></i>
-              Add agent
-            </Button>
-          </Col>
-        </Row>
-        <Row className="m-2 mt-4" style={{ color: "gray" }}>
-          <div className="d-flex" style={{ justifyContent: "space-between" }}>
-            <div>Showing 9 agents</div>
-            <div className="d-flex">
-              <div>
-                <i
-                  className="bx bx-radio-circle-marked"
-                  style={{ color: "#00d084" }}
-                ></i>
-                Healthy{" "}
-                <span
-                  className="p-1 px-2"
-                  style={{
-                    backgroundColor: "#e0e0e0",
-                    color: "black",
-                    borderRadius: "4px",
-                  }}
-                >
-                  3
-                </span>
-              </div>
-              <div className="mx-3">
-                <i
-                  className="bx bx-radio-circle-marked"
-                  style={{ color: "#f3de84" }}
-                ></i>
-                Unhealthy{" "}
-                <span
-                  className="p-1 px-2"
-                  style={{
-                    backgroundColor: "#e0e0e0",
-                    color: "black",
-                    borderRadius: "4px",
-                  }}
-                >
-                  0
-                </span>
-              </div>
-              <div className="mx-3">
-                <i
-                  className="bx bx-radio-circle-marked"
-                  style={{ color: "#f3de84" }}
-                ></i>
-                Updating{" "}
-                <span
-                  className="p-1 px-2"
-                  style={{
-                    backgroundColor: "#e0e0e0",
-                    color: "black",
-                    borderRadius: "4px",
-                  }}
-                >
-                  2
-                </span>
-              </div>
-              <div className="mx-3">
-                <i
-                  className="bx bx-radio-circle-marked"
-                  style={{ color: "gray" }}
-                ></i>
-                Offline{" "}
-                <span
-                  className="p-1 px-2"
-                  style={{
-                    backgroundColor: "#e0e0e0",
-                    color: "black",
-                    borderRadius: "4px",
-                  }}
-                >
-                  4
-                </span>
-              </div>
-            </div>
-          </div>
-        </Row>
+    <nav style={{ background: "#333", color: "#fff" }}>
+      <ul className="pagination">
+        <li className="page-item">
+          <button
+            className="page-link"
+            onClick={handleBackButtonClick}
+            disabled={previosDisabled}
+            aria-disabled={previosDisabled}
+            aria-label="previous page"
+            style={{ background: "#080a0a", color: "gray", border: "none" }}
+          >
+            Previous
+          </button>
+        </li>
+        {pageItems.map((page) => {
+          const className =
+            page === currentPage ? "page-item active" : "page-item";
 
-        <Row>
-          <Container className="container">
-            {/* <div id="toolbar">
-              <Dropdown isOpen={isDropdownOpen} toggle={toggleDropdown}>
-                <DropdownToggle caret>Export Options</DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem onClick={() => handleExportChange("")}>
-                    Export Basic
-                  </DropdownItem>
-                  <DropdownItem onClick={() => handleExportChange("all")}>
-                    Export All
-                  </DropdownItem>
-                  <DropdownItem onClick={() => handleExportChange("selected")}>
-                    Export Selected
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div> */}
-            <table
-              id="table"
-              data-toggle="table"
-              data-search="true"
-              data-filter-control="true"
-              data-show-export="true"
-              data-click-to-select="true"
-              data-toolbar="#toolbar"
-              className="mt-3 w-100 p-2 text-light mt-3"
-              style={{ borderRadius: "4px", backgroundColor: "#151818" }}
-            >
-              <thead className="">
-                <tr>
-                  <th data-field="state" data-checkbox="true"></th>
-                  <th
-                    data-field="prenom"
-                    data-filter-control="input"
-                    data-sortable="true"
-                    className="p-2"
-                  >
-                    Host
-                  </th>
-                  <th
-                    data-field="date"
-                    data-filter-control="select"
-                    data-sortable="true"
-                    className="p-2"
-                  >
-                    Status
-                  </th>
-                  <th
-                    data-field="examen"
-                    data-filter-control="select"
-                    data-sortable="true"
-                    className="p-2"
-                  >
-                    Agent Policy
-                  </th>
-                  <th data-field="note" data-sortable="true" className="p-2">
-                    Version
-                  </th>
-                  <th data-field="note" data-sortable="true" className="p-2">
-                    Last activity
-                  </th>
-                  <th data-field="note" data-sortable="true" className="p-2">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#6dccb2",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Healthy
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    Elastiv CLoud agent policy{" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#79aad9",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Updating
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    Test-Agent{" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#79aad9",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Updating
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    Test-Agent{" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#79aad9",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Updating
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                  Elastiv CLoud agent policy {" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#79aad9",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Updating
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                  Elastiv CLoud agent policy {" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#79aad9",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Updating
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                  Elastiv CLoud agent policy {" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#79aad9",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Updating
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                  Elastiv CLoud agent policy {" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bs-checkbox p-3">
-                    <input data-index="0" name="btSelectItem" type="checkbox" />
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                    6acd3ed7f6 - windows
-                  </td>
-                  <td className="p-3">
-                    <div
-                      className="p-2"
-                      style={{
-                        backgroundColor: "#79aad9",
-                        borderRadius: "6px",
-                        width: "max-content",
-                        color: "black",
-                      }}
-                    >
-                      Updating
-                    </div>
-                  </td>
-                  <td style={{ color: "#4694d2" }} className="fw-bolder p-3">
-                  Elastiv CLoud agent policy {" "}
-                    <i
-                      className="bx bx-lock fw-lighter"
-                      style={{ color: "gray" }}
-                    ></i>
-                    <span style={{ color: "gray" }} className="fw-lighter">
-                      rev.5
-                    </span>
-                  </td>
-                  <td className="p-3">7.16.0</td>
-                  <td className="p-3">30 seconds ago</td>
-                  <td className="p-3">
-                    <i
-                      className="bx bx-dots-horizontal"
-                      style={{ cursor: "pointer" }}
-                    ></i>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </Container>
-        </Row>
+          return (
+            <li key={page} className={className}>
+              <button
+                className="page-link"
+                onClick={handlePageNumber}
+                value={page}
+                style={{ background: "#080a0a", color: "gray", border: "none" }}
+              >
+                {page}
+              </button>
+            </li>
+          );
+        })}
+        <li className="page-item" style={{ backgroundColor: "darkred" }}>
+          <button
+            className="page-link"
+            onClick={handleNextButtonClick}
+            disabled={nextDisabled}
+            aria-disabled={nextDisabled}
+            aria-label="next page"
+            style={{ background: "#080a0a", color: "gray", border: "none" }}
+          >
+            Next
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+const BootyCheckbox = React.forwardRef(({ onClick, ...rest }, ref) => (
+  <div className="form-check">
+    <input
+      htmlFor="booty-check"
+      type="checkbox"
+      className="form-check-input"
+      ref={ref}
+      onClick={onClick}
+      {...rest}
+    />
+    <label className="form-check-label" id="booty-check" />
+  </div>
+));
+
+function Agents() {
+  return (
+    <div className="p-2">
+      <div
+        className="card mt-2"
+        style={{ border: "none ", borderRadius: "0px" }}
+      >
+        <DataTable
+          //   title="Movies"
+          columns={columns}
+          data={movies}
+          defaultSortFieldID={1}
+          //   pagination
+          //   paginationComponent={BootyPagination}
+          //   selectableRows
+          //   selectableRowsComponent={BootyCheckbox}
+
+          customStyles={customStyles}
+          //theme="solarized"
+          conditionalRowStyles={conditionalRowStyles}
+        />
       </div>
-    </>
+    </div>
   );
 }
 
