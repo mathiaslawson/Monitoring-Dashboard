@@ -6,15 +6,14 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div style={{ backgroundColor: "#0c0f0f" }}>
+    <div style={{backgroundColor: '#0c0f0f'}}>
       <Navbar />
-
-      <Row>
+      <div style={{ height: "100vh" }} className="d-flex">
         {/* Left Sidebar */}
 
         <LeftSidebar />
 
-        <Col>
+        <Col className="w-100">
           {" "}
           <Home />
         </Col>
@@ -22,7 +21,7 @@ function App() {
         {/* <Home />
 
           <RightSidebar /> */}
-      </Row>
+      </div>
       {/* <Home /> */}
     </div>
   );

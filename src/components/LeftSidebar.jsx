@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Button } from "reactstrap";
 
-function LeftSidebar() {
+function LeftSidebar({ isOpen }) {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Adjust the breakpoint as needed
 
@@ -29,7 +29,12 @@ function LeftSidebar() {
 
   return (
     <>
-      <div style={{ backgroundColor: "black", height: "100vh", width: "80px" }}>
+      <Col
+        style={{ backgroundColor: "black", height: "auto", width: '80px' }}
+        xl={1}
+        md={1}
+        sm={1}
+      >
         <div className="list-group">
           <div
             className="list-group-item"
@@ -49,13 +54,13 @@ function LeftSidebar() {
             </p>
           </div>
         </div>
-      </div>
+      </Col>
 
       {/* Show the right sidebar only on non-mobile screens */}
       {!isMobile && showRightSidebar && (
         <Col
-          md={4}
-          sm={2}
+          md={3}
+          sm={1}
           xl={2}
           style={{ padding: "0px", margin: "0px", backgroundColor: "#151818" }}
         >
@@ -85,7 +90,7 @@ function LeftSidebar() {
               className="d-flex p-2"
               style={{ justifyContent: "space-between" }}
             >
-              <div style={{ color: "gray", cursor: 'pointer' }}>
+              <div style={{ color: "gray", cursor: "pointer" }}>
                 <i className="bx bx-plug mx-2"></i>Invite Users
               </div>
               <div>
@@ -113,59 +118,113 @@ function LeftSidebar() {
               <hr style={{ color: "gray" }} className="mx-3" />
               {showList && (
                 <ul>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2 p-1">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2 p-1"
+                  >
                     Active Directory
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                   Apache
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    Apache
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     Cassandra
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     CoreDNS
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     demo-sites
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     DNS Query
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     Docker
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     Host reachability
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     HTTP Endpoints
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
                     IIS
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                   Kubernetes
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    Kubernetes
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                   Machine Learning
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    Machine Learning
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                   MS Exchange
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    MS Exchange
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                   Nginx
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    Nginx
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                  PostgreSQL
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    PostgreSQL
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                  Redis
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    Redis
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                  UPS
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    UPS
                   </li>
-                  <li style={{ color: "#464d5b", listStyleType: "none" }} className="my-2">
-                  Windows
+                  <li
+                    style={{ color: "#464d5b", listStyleType: "none" }}
+                    className="my-2"
+                  >
+                    Windows
                   </li>
                 </ul>
               )}

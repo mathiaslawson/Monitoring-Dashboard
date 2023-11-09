@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import classnames from "classnames";
 import { useState } from "react";
-import Agents from "./Agents";
+import Agents from "./Agent/Agents";
 
 function Index() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -22,9 +22,9 @@ function Index() {
 
   return (
     <>
-      <Col className="mt-5">
+      <Col className="mt-2">
         <h3 style={{color: '#e0e0e0'}}>Fleet</h3>
-        <p style={{color: '#536775'}} className="">Centralized management for Elastic Agents.</p>
+        <p style={{color: 'gray'}} className="">Centralized management for Elastic Agents.</p>
       </Col>{" "}
       <Col md={12} xl={12} style={{}} className="mt-5">
         <div className="content">

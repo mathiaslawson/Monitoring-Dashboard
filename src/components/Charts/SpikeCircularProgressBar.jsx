@@ -13,7 +13,7 @@ function ChartComponent({ data, color }) {
       chartInstance.current = new EasyPieChart(chartRef.current, {
         barColor: color,
         trackColor: "#353f3f",
-        size: "260",
+        size: "150",
         lineWidth: "10",
       });
     }
@@ -58,7 +58,7 @@ function ChartComponent({ data, color }) {
               <div
                 ref={contentRef}
                 style={{ position: "absolute", color: "gray" }}
-                className="mt-5 fw-bolder"
+                className="mt-2 fw-bolder"
               >
                 <p className="text-center mt-5">{data}</p>
                 <p style={{ color: "#353f3f" }}>mb/s</p>

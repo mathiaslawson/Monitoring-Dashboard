@@ -27,8 +27,11 @@ function NavbarComponent() {
         style={{ justifyContent: "space-between", backgroundColor: "#1d2222" }}
       >
         <div>
-          All nodes
-          <i className="bx bx-fullscreen fs-4" style={{ color: "white" }}></i>
+          <p style={{color: 'gray'}}>
+            {" "}
+            All nodes
+            <i className="bx bx-fullscreen fs-4 mx-2" style={{ color: "gray", position: 'relative', top :'0.3rem' }}></i>
+          </p>
         </div>
 
         <div>
@@ -88,7 +91,7 @@ function NavbarComponent() {
                     </div>
                   </div>
                   <div
-                    style={{ border: "0.5px solid gray" }}
+                    style={{ border: "0.1px solid #394444" }}
                     className="mx-4"
                   ></div>
                 </div>
@@ -102,7 +105,7 @@ function NavbarComponent() {
                     <p className="mx-3">
                       <i
                         className="bx bx-server fs-3"
-                        style={{ color: "#aebbbb" }}
+                        style={{ color: "gray" }}
                       ></i>
                     </p>
                   </div>
@@ -172,9 +175,7 @@ function NavbarComponent() {
             </Nav>
           </Collapse>
         </div>
-       
       </Navbar>
-  
     </>
   );
 }

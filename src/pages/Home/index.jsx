@@ -18,8 +18,8 @@ function Index() {
 
   return (
     <>
-      <Col md={12} xl={12} >
-        <div className="content">
+      <Col md={11} xl={12} sm={9}>
+        <div className="content m-2">
           <div>
             <Nav tabs style={{borderBottom: 'black'}}>
               <NavItem>
