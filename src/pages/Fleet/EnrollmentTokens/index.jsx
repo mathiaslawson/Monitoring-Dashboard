@@ -51,13 +51,13 @@ function Index() {
         </>
       ),
       sortable: true,
-      right: true,
+      center: true,
     },
     {
       name: "Agent policy",
       selector: (row) => row.agentPolicy,
       sortable: true,
-      right: true,
+      center: true,
     },
     {
       name: "Created on",
@@ -76,13 +76,14 @@ function Index() {
         </>
       ),
       sortable: true,
-      right: true,
+      center: true,
     },
 
     {
       name: "Actions",
       selector: (row) => row.runtime,
       sortable: true,
+      center: true,
       cell: () => (
         <div className="App">
           <div className="openbtn text-center">

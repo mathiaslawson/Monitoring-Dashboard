@@ -2,14 +2,16 @@ import movies from "../movies";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "bootstrap/dist/css/bootstrap.css";
 import "../style.css";
-import { Button } from "reactstrap";
+import { Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from "reactstrap";
 import TableComponent from "../../../components/Common/TableComponent";
-
+import { useState } from "react";
+import AddAgent from "./AddAgent";
 
 const columns = [
   {
     name: "Status",
     button: true,
+    center: true,
     cell: () => (
       <div className="App">
         <div className="openbtn text-center">
@@ -35,6 +37,7 @@ const columns = [
     name: "Host",
     selector: (row) => <p style={{ color: "#4694d2" }}>{row.host}t</p>,
     sortable: true,
+    center: true,
   },
 
   {
@@ -48,36 +51,37 @@ const columns = [
       </>
     ),
     sortable: true,
-    right: true,
+    center: true,
   },
   {
     name: "CPU",
     selector: (row) => row.CPU,
     sortable: true,
-    right: true,
+    center: true,
   },
   {
     name: "Memory",
     selector: (row) => row.memory,
     sortable: true,
-    right: true,
+    center: true,
   },
   {
     name: "Last activity",
     selector: (row) => row.last_activity,
     sortable: true,
-    right: true,
+    center: true,
   },
   {
     name: "Version",
     selector: (row) => row.version,
     sortable: true,
-    right: true,
+    center: true,
   },
   {
     name: "Actions",
     selector: (row) => row.runtime,
     sortable: true,
+    center: true,
     cell: () => (
       <div className="App">
         <div className="openbtn text-center">
@@ -100,9 +104,27 @@ const columns = [
   },
 ];
 
-
-
 function Agents() {
+  const [isTop, setIsTop] = useState(false);
+  const toggleTopCanvas = () => {
+    setIsTop(!isTop);
+  };
+
+  const [isRight, setIsRight] = useState(false);
+  const toggleRightCanvas = () => {
+    setIsRight(!isRight);
+  };
+
+  const [isBottom, setIsBottom] = useState(false);
+  const toggleBottomCanvas = () => {
+    setIsBottom(!isBottom);
+  };
+
+  const [isLeft, setIsLeft] = useState(false);
+  const toggleLeftCanvas = () => {
+    setIsLeft(!isLeft);
+  };
+
   return (
     <div className="p-2">
       <div
@@ -140,6 +162,9 @@ function Agents() {
               <Button
                 className="btn"
                 style={{ color: "gray", backgroundColor: "#2d3535" }}
+                onClick={() => {
+                  toggleRightCanvas();
+                }}
               >
                 Add agent
               </Button>
@@ -201,9 +226,40 @@ function Agents() {
           </div>
         </div>
 
-        <TableComponent  data={movies} columns={columns}/>
-     
+        <TableComponent data={movies} columns={columns} />
       </div>
+
+      {/* Off Canvas */}
+
+      {/* <div className="d-flex flex-wrap gap-2">
+    <Button color="primary" onClick={toggleTopCanvas}>Toggle Top Offcanvas</Button>
+    <Button color="secondary" onClick={toggleRightCanvas}>Toggle Right Offcanvas</Button>
+    <Button color="success" onClick={toggleBottomCanvas}>Toggle Bottom Offcanvas</Button>
+    <Button color="danger" onClick={toggleLeftCanvas}>Toggle Left Offcanvas</Button>
+</div> */}
+
+      <Offcanvas
+        isOpen={isRight}
+        toggle={toggleRightCanvas}
+        id="offcanvasRight"
+        direction="end"
+        style={{ color: "#e0e0e0", backgroundColor: "#2d3535" }}
+        className="w-50"
+      >
+        <OffcanvasHeader toggle={toggleRightCanvas} id="offcanvasRightLabel">
+          <h3>Add agent</h3>
+        </OffcanvasHeader>
+        <OffcanvasBody>
+          <div>
+            <p className="fw-light">
+              Add Elastic Agents to your hosts to collect data ans send it to
+              the Elastic Stack.
+            </p>
+            <hr />
+            <AddAgent />
+          </div>
+        </OffcanvasBody>
+      </Offcanvas>
     </div>
   );
 }

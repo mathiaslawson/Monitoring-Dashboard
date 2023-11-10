@@ -59,31 +59,32 @@ function Index() {
         </>
       ),
       sortable: true,
-      right: true,
+      center: true,
     },
     {
       name: "Latest update",
       selector: (row) => row.latestUpdate,
       sortable: true,
-      right: true,
+      center: true,
     },
     {
       name: "Agents",
       selector: (row) => row.agents,
       sortable: true,
-      right: true,
+      center: true,
     },
     {
       name: "Integrations",
       selector: (row) => row.integrations,
       sortable: true,
-      right: true,
+      center: true,
     },
 
     {
       name: "Actions",
       selector: (row) => row.runtime,
       sortable: true,
+      center: true,
       cell: () => (
         <div className="App">
           <div className="openbtn text-center">
