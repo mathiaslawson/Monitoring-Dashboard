@@ -43,7 +43,7 @@ function TableComponent({ columns, data }) {
         "&:not(:last-of-type)": {
           borderBottomStyle: "solid",
           borderBottomWidth: "1px",
-          borderBottomColor: "#0c0f0f",
+          borderBottomColor: "rgba(37, 44, 44, 0.667)",
         },
       },
       denseStyle: {
@@ -117,7 +117,7 @@ function TableComponent({ columns, data }) {
         color: "gray",
         fontFamily: "monospace",
         fontSize: "14px",
-        // border: "1px solid #0c0f0f",
+        // border: "1px solid rgba(37, 44, 44, 0.667)",
       },
     },
     stripedStyle: {
@@ -131,7 +131,7 @@ function TableComponent({ columns, data }) {
         minHeight: "56px",
         paddingLeft: "16px",
         paddingRight: "8px",
-        border: "1px solid #0c0f0f ",
+        border: "1px solid rgba(37, 44, 44, 0.667) ",
       },
     },
     cells: {
@@ -154,7 +154,7 @@ function TableComponent({ columns, data }) {
     {
       when: (row) => row.id % 2 !== 0,
       style: {
-        backgroundColor: "#080a0a",
+        backgroundColor: "#353f3f",
         borderRadius: "0px",
       },
     },

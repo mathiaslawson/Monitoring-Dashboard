@@ -70,12 +70,12 @@ html {
   
   /* Optional: Add alternating row colors */
   .rdt_TableRow:nth-child(even) {
-    background-color: #0c0f0f;
+    background-color: rgba(37, 44, 44, 0.667);
     border:  1px solid black;
   }
   
   .rdt_TableRow:nth-child(odd) {
-    background-color: #0c0f0f;
+    background-color: rgba(37, 44, 44, 0.667);
     border:  1px solid black
   }
 

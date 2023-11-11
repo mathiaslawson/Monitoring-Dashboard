@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div style={{backgroundColor: '#0c0f0f'}}>
+    <div style={{backgroundColor: '#151818'}}>
       <Navbar />
       <div style={{ height: "100vh" }} className="d-flex">
         {/* Left Sidebar */}

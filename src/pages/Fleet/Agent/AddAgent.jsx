@@ -193,7 +193,7 @@ function AddAgent() {
           <div
             className="p-2 mt-2"
             style={{
-              backgroundColor: "#0c0f0f",
+              backgroundColor: "rgba(37, 44, 44, 0.667)",
               border: "1px solid #00ab44",
               borderRadius: "8px",
             }}
