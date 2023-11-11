@@ -1,7 +1,15 @@
-import { Button } from "reactstrap";
+import { Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from "reactstrap";
 import TableComponent from "../../../components/Common/TableComponent";
+import AddAgentPolicy from "./AddAgentPolicy";
+import { useState } from "react";
 
 function Index() {
+
+    const [isRight, setIsRight] = useState(false);
+    const toggleRightCanvas = () => {
+      setIsRight(!isRight);
+    };
+
   const data = [
     {
       id: "1",
@@ -134,6 +142,9 @@ function Index() {
               <Button
                 className="btn"
                 style={{ color: "gray", backgroundColor: "#2d3535" }}
+                onClick={()=>{
+                    toggleRightCanvas()
+                }}
               >
                 <i className="bx bx-plus mx-1"></i>
                 Create agent policy
@@ -143,6 +154,30 @@ function Index() {
           </div>
         </div>
         <TableComponent data={data} columns={columns}></TableComponent>
+
+
+        {/* Off Canvas */}
+        <Offcanvas
+        isOpen={isRight}
+        toggle={toggleRightCanvas}
+        id="offcanvasRight"
+        direction="end"
+        style={{ color: "#e0e0e0", backgroundColor: "#2d3535" }}
+        className="w-50"
+      >
+        <OffcanvasHeader toggle={toggleRightCanvas} id="offcanvasRightLabel">
+          <h3>Add agent policy</h3>
+        </OffcanvasHeader>
+        <OffcanvasBody>
+          <div>
+            <p className="fw-light">
+              Agent policies are used to manage settings acroos a group of agents You can dd integrations to your agent policy to sepcify what your agents collect. When you edit an agent policy, you can use Fleet to deploy updates to be a specified group of agents.
+            </p>
+            <hr />
+            <AddAgentPolicy />
+          </div>
+        </OffcanvasBody>
+      </Offcanvas>
       </div>
     </>
   );
