@@ -58,6 +58,20 @@ background-color:#151818 ;
 }
 
 
+/* styles.css */
+
+.custom-input {
+  border: 2px solid #00ab44; /* Green border */
+  background-color: black; /* Black background */
+  color: gray; /* Gray text color */
+}
+
+.custom-input::placeholder {
+  color: lightgray !important; /* Color of the placeholder */
+}
+
+
+
 
 
 

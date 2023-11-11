@@ -1,7 +1,23 @@
-import { Button } from "reactstrap";
+import {
+  Button,
+  Col,
+  Input,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Row,
+} from "reactstrap";
 import TableComponent from "../../../components/Common/TableComponent";
+import { useState } from "react";
 
 function Index() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
   const data = [
     {
       id: "1",
@@ -106,6 +122,12 @@ function Index() {
     },
   ];
 
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
   return (
     <>
       <div className="p-2">
@@ -124,23 +146,79 @@ function Index() {
               <Button
                 className="btn"
                 style={{ color: "gray", backgroundColor: "#2d3535" }}
-              >
-                <i className="bx bx-refresh mx-1"></i>
-                Reload
-              </Button>
-            </div>
-            <div>
-              <Button
-                className="btn"
-                style={{ color: "gray", backgroundColor: "#2d3535" }}
+                onClick={() => {
+                  toggleModal();
+                }}
               >
                 <i className="bx bx-plus mx-1"></i>
-                Create agent policy
+                Create enrollment tokens
               </Button>
             </div>
           </div>
         </div>
         <TableComponent data={data} columns={columns}></TableComponent>
+        {/* Modal */}
+        <div>
+          <Modal isOpen={modalOpen} toggle={toggleModal}>
+            <ModalHeader
+              toggle={toggleModal}
+              style={{ backgroundColor: "#2d3535", color: "white" }}
+            >
+              Create enrollment token
+            </ModalHeader>
+            <ModalBody style={{ backgroundColor: "#2d3535", color: "white" }}>
+              <Row>
+                <Col>
+                  <label>Token Name</label>
+                  <Input
+                    className="form-control p-3 custom-Input"
+                    type="text"
+                    placeholder={"Enter a token name"}
+                    style={{
+                      border: "2px solid #00ab44", // Green border
+                      backgroundColor: "black", // Black background
+                      color: "gray", // Gray text color
+                      "::placeholder": {
+                        color: "gray !important", // Change the color of the placeholder
+                      },
+                    }}
+                  ></Input>
+                </Col>
+                <p>Token id will be used when this is left empty.</p>
+              </Row>
+
+              <Row>
+                <Col className="mt-3">
+                  <label>Policy</label>
+                  <select
+                    className="form-control mt-2 p-3"
+                    value={selectedOption}
+                    onChange={handleSelectChange}
+                    style={{
+                      border: "2px solid #00ab44",
+                      backgroundColor: "#080a0a",
+                      color: "gray",
+                      outline: "none",
+                    }}
+                  >
+                    <option value="option1">Fefault (currently Default)</option>
+                  </select>
+                </Col>
+              </Row>
+            </ModalBody>
+            <ModalFooter style={{ backgroundColor: "#2d3535" }}>
+              <Button
+                onClick={toggleModal}
+                style={{ backgroundColor: "#00ab44", border: "none" }}
+              >
+                Create enrollment token
+              </Button>{" "}
+              <Button color="secondary" onClick={toggleModal}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
+        </div>
       </div>
     </>
   );

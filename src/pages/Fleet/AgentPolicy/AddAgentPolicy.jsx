@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import {
-  Button,
-  ButtonGroup,
-  ButtonToolbar,
-  Spinner,
-  UncontrolledAlert,
-} from "reactstrap";
+// import {
+//   Button,
+//   ButtonGroup,
+//   ButtonToolbar,
+//   Spinner,
+//   UncontrolledAlert,
+// } from "reactstrap";
 
 function AddAgentPolicy() {
   const [selectedOption, setSelectedOption] = useState("");
@@ -19,9 +19,9 @@ function AddAgentPolicy() {
     setSelectedOption(event.target.value);
   };
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+//   const handleOptionChange = (event) => {
+//     setSelectedOption(event.target.value);
+//   };
 
   return (
     <>
@@ -144,7 +144,7 @@ function AddAgentPolicy() {
                     Namespaces are a user-configurable arbitrary grouping that
                     makes it wasier to seach for data ans manage user
                     permissions. A policy namespace is used to name its
-                    integrations's data streams.{" "}
+                    integrations data streams.{" "}
                     <span style={{ color: "#4694d2", cursor: "pointer" }}>
                       Learn more
                     </span>
