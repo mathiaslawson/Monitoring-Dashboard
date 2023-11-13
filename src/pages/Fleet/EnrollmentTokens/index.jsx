@@ -52,7 +52,7 @@ function Index() {
   const columns = [
     {
       name: "Name",
-      selector: (row) => <p style={{ color: "#4694d2" }}>{row.name}t</p>,
+      selector: (row) => <p style={{ color: "#00ab44" }}>{row.name}t</p>,
       sortable: true,
     },
 
@@ -61,7 +61,7 @@ function Index() {
       selector: (row) => (
         <>
           <div className="" style={{ width: "300px" }}>
-            <p style={{ color: "#4694d2" }}>{row.secret}</p>
+            <p style={{ color: "#00ab44" }}>{row.secret}</p>
             <p>{row.rev}</p>
           </div>
         </>

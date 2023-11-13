@@ -35,7 +35,7 @@ const columns = [
 
   {
     name: "Host",
-    selector: (row) => <p style={{ color: "#4694d2" }}>{row.host}t</p>,
+    selector: (row) => <p style={{ color: "#00ab44" }}>{row.host}t</p>,
     sortable: true,
     center: true,
   },
@@ -45,7 +45,7 @@ const columns = [
     selector: (row) => (
       <>
         <div className="" style={{ width: "300px" }}>
-          <p style={{ color: "#4694d2" }}>{row.agent_policy}</p>
+          <p style={{ color: "#00ab44" }}>{row.agent_policy}</p>
           <p>{row.rev}</p>
         </div>
       </>

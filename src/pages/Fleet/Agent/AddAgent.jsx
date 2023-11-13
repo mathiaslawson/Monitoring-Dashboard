@@ -45,7 +45,7 @@ function AddAgent() {
           </h5>
           <h6 className="vertical-timeline-element-subtitle">
             Type of hosts are controlled by an{" "}
-            <span style={{ color: "#4694d2" }}>agent policy</span> Choose an
+            <span style={{ color: "#00ab44" }}>agent policy</span> Choose an
             agent policy or create a new one.
           </h6>
           <select
@@ -79,7 +79,7 @@ function AddAgent() {
               </Button>
             </div>
           </div>
-          <div style={{ color: "#4694d2", cursor: "pointer" }} className="mt-4">
+          <div style={{ color: "#00ab44", cursor: "pointer" }} className="mt-4">
             <i className="bx bx-chevron-right"></i>
             Authentication settings
           </div>
@@ -162,9 +162,9 @@ function AddAgent() {
             Select the appropriate platofrom and run commands to install, enroll
             and start Elastic Agent. Reuse commands to set up agents on more
             than one host. For aarch 64, see our{" "}
-            <span style={{ color: "#4694d2" }}>downloads page</span> additional
+            <span style={{ color: "#00ab44" }}>downloads page</span> additional
             guidance, see our{" "}
-            <span style={{ color: "#4694d2" }}>installation docs</span>
+            <span style={{ color: "#00ab44" }}>installation docs</span>
           </p>
 
           <ButtonToolbar className="mt-3">
@@ -234,7 +234,7 @@ function AddAgent() {
           </UncontrolledAlert>
 
           <p>
-           After tha agent start up, the Elastic Stack listens for the agent and confirm the enrollment in Fleet. If you're having trouble connecting, check out the <span style={{color: "#4694d2"}}>troubleshooting guide.</span>
+           After tha agent start up, the Elastic Stack listens for the agent and confirm the enrollment in Fleet. If you're having trouble connecting, check out the <span style={{color: "#00ab44"}}>troubleshooting guide.</span>
           </p>
         </VerticalTimelineElement>
       </VerticalTimeline>

@@ -54,7 +54,7 @@ function AddAgentPolicy() {
             <h5 className="vertical-timeline-element-title">Name</h5>
             {/* <h6 className="vertical-timeline-element-subtitle">
               Type of hosts are controlled by an{" "}
-              <span style={{ color: "#4694d2" }}>agent policy</span> Choose an
+              <span style={{ color: "#00ab44" }}>agent policy</span> Choose an
               agent policy or create a new one.
             </h6> */}
             <select
@@ -145,7 +145,7 @@ function AddAgentPolicy() {
                     makes it wasier to seach for data ans manage user
                     permissions. A policy namespace is used to name its
                     integrations data streams.{" "}
-                    <span style={{ color: "#4694d2", cursor: "pointer" }}>
+                    <span style={{ color: "#00ab44", cursor: "pointer" }}>
                       Learn more
                     </span>
                   </td>
