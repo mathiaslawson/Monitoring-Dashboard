@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Button } from "reactstrap";
 
 function LeftSidebar({ isOpen }) {
-  const [showRightSidebar, setShowRightSidebar] = useState(false);
+  const [showRightSidebar, setShowRightSidebar] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Adjust the breakpoint as needed
 
   const toggleRightSidebar = () => {
@@ -21,7 +21,7 @@ function LeftSidebar({ isOpen }) {
     };
   }, []);
 
-  const [showList, setShowList] = useState(false);
+  const [showList, setShowList] = useState(true);
 
   const toggleList = () => {
     setShowList(!showList);
@@ -30,10 +30,10 @@ function LeftSidebar({ isOpen }) {
   return (
     <>
       <Col
-        style={{ backgroundColor: "black", height: "auto", width: '80px' }}
-        xl={1}
-        md={1}
-        sm={1}
+        style={{ backgroundColor: "black", width: 'auto', position: '',   }}
+        xl={12}
+        md={12}
+        sm={12}
       >
         <div className="list-group">
           <div
@@ -59,12 +59,12 @@ function LeftSidebar({ isOpen }) {
       {/* Show the right sidebar only on non-mobile screens */}
       {!isMobile && showRightSidebar && (
         <Col
-          md={3}
-          sm={1}
-          xl={2}
-          style={{ padding: "0px", margin: "0px", backgroundColor: "#151818" }}
+          md={12}
+          sm={12}
+          xl={12}
+          style={{ padding: "10px", margin: "0px", backgroundColor: "black", width: "250px",  height: "100svh", }}
         >
-          <div style={{ backgroundColor: "#151818" }}>
+          <div style={{ backgroundColor: "black" }}>
             {/* Right Sidebar Content */}
             <div
               className="d-flex p-2"
@@ -100,7 +100,7 @@ function LeftSidebar({ isOpen }) {
             <div>
               <div
                 className="d-flex p-2"
-                style={{ justifyContent: "space-between" }}
+                style={{ justifyContent: "space-between", cursor: 'pointer' }}
                 onClick={toggleList}
               >
                 <div style={{ color: "gray" }}>

@@ -6,6 +6,7 @@ import { useState } from "react";
 //import SpeedometerComponent from "../../components/Charts/Speedometer";
 import HomePage from "../HomePage";
 import Fleet from "../Fleet";
+import Functions from "../Functions"
 
 function Index() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -18,8 +19,8 @@ function Index() {
 
   return (
     <>
-      <Col md={11} xl={12} sm={9} style={{backgroundColor: '#1d2222'}}>
-        <div className="content m">
+      <Col  style={{backgroundColor: '#1d2222'}} >
+        <div className="content">
           <div>
             <Nav tabs style={{borderBottom: 'black'}}>
               <NavItem>
@@ -116,7 +117,7 @@ function Index() {
             <TabContent activeTab={activeTab}>
               <TabPane tabId="tab1">
                 <Row>
-                  <Col sm="12">
+                  <Col >
                     <HomePage />
                   </Col>
                 </Row>
@@ -125,7 +126,7 @@ function Index() {
                 <Row>
                   <Col sm="12">
                     <h4>Over view</h4>
-                    {/* Add your content for Tab 2 here */}
+                  
                   </Col>
                 </Row>
               </TabPane>
@@ -149,7 +150,7 @@ function Index() {
                 <Row>
                   <Col sm="12">
                     <h4>Dashboards</h4>
-                    {/* Add your content for Tab 3 here */}
+                   
                   </Col>
                 </Row>
               </TabPane>
@@ -157,7 +158,7 @@ function Index() {
                 <Row>
                   <Col sm="12">
                     <h4>Alerts</h4>
-                    {/* Add your content for Tab 3 here */}
+                    
                   </Col>
                 </Row>
               </TabPane>
@@ -165,15 +166,14 @@ function Index() {
                 <Row>
                   <Col sm="12">
                     <h4>Anomalies</h4>
-                    {/* Add your content for Tab 3 here */}
+                   
                   </Col>
                 </Row>
               </TabPane>
               <TabPane tabId="tab8">
                 <Row>
                   <Col sm="12">
-                    <h4>Functions </h4>
-                    {/* Add your content for Tab 3 here */}
+                  <Functions />
                   </Col>
                 </Row>
               </TabPane>

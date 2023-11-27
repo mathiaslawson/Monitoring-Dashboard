@@ -11,10 +11,11 @@ function ChartComponent({ data, color }) {
     if (!chartInstance.current) {
       // Initialize the chart only if it hasn't been created yet
       chartInstance.current = new EasyPieChart(chartRef.current, {
-        barColor: color,
+        barColor: data ===  "0" ? "transparent" : color,
         trackColor: "#353f3f",
         size: "150",
         lineWidth: "10",
+        scaleColor: "transparent"
       });
     }
 
@@ -38,14 +39,16 @@ function ChartComponent({ data, color }) {
       className="col-md-2"
       style={{
         position: "",
-        backgroundColor: "#151818",
+        backgroundColor: "transparent",
+        border: '1px solid transparent',
         borderRadius: "3px",
         width: "max-content",
+        height: '25svh'
       }}
     >
       <CardBody>
         <p className="text-center" style={{ color: "gray" }}>
-          Average CPU per Node{" "}
+          {/* Average CPU per Node{" "} */}
         </p>
         <Row>
           <Col>
@@ -60,8 +63,8 @@ function ChartComponent({ data, color }) {
                 style={{ position: "absolute", color: "gray" }}
                 className="mt-2 fw-bolder"
               >
-                <p className="text-center mt-5">{data}</p>
-                <p style={{ color: "#353f3f" }}>mb/s</p>
+                <p className="text-center mt-5" style={{color: data ===  "0" ? "transparent" : ""}}>{data}</p>
+                <p style={{ color: data ===  "0" ? "transparent" : "#353f3f"}}>mb/s</p>
               </div>
             </div>
           </Col>

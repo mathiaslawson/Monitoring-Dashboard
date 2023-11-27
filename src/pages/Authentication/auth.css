@@ -1,0 +1,6 @@
+/* Assuming you have a class named form-control */
+.form-control:focus {
+    outline: none;
+    box-shadow: none; /* This can also help in some cases */
+  }
+  

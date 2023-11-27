@@ -24,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-flatpickr": "^3.10.13",
     "react-gauge-component": "^1.1.22",
+    "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^6.11.1",
     "react-select": "^5.7.0",
     "react-table": "^7.8.0",
