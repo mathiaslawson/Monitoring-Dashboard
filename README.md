@@ -17,9 +17,6 @@ A clone of the Netdata user interface, providing real-time performance monitorin
 <img src="https://utfs.io/f/5438719e-aded-4806-85a1-05e74c07277d-1m24i6.png">
 *Fleet Section*
 
-![Charts](path/to/your/image3.png)
-*Various charts visualizing performance data.*
-
 ## Installation
 
 1. Clone the repository:
