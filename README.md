@@ -11,7 +11,7 @@ A clone of the Netdata user interface, providing real-time performance monitorin
 
 ## Screenshots
 
-![Dashboard](path/to/your/image1.png)
+<img src="https://utfs.io/f/00cd3bb8-8743-4339-8fbf-82b90e240529-qe3364.png">
 *Dashboard view showing system metrics.*
 
 <img src="https://utfs.io/f/5438719e-aded-4806-85a1-05e74c07277d-1m24i6.png">
