@@ -1,8 +1,27 @@
-# React + Vite
+# Netdata UI Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clone of the Netdata user interface, providing real-time performance monitoring and visualization. This project aims to replicate the intuitive and detailed UI of Netdata, offering insights into system and application metrics.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time monitoring of system and application metrics
+- Detailed visualizations and charts
+- Intuitive and user-friendly interface
+- Lightweight and efficient design
+
+## Screenshots
+
+![Dashboard](path/to/your/image1.png)
+*Dashboard view showing system metrics.*
+
+![Detailed Metrics](path/to/your/image2.png)
+*Detailed view of specific metrics.*
+
+![Charts](path/to/your/image3.png)
+*Various charts visualizing performance data.*
+
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/netdata-ui-clone.git
