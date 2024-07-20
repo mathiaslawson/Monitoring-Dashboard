@@ -15,3 +15,17 @@ A clone of the Netdata user interface, providing real-time performance monitorin
 1. Clone the repository:
    ```sh
    git clone https://github.com/mathiaslawson/Monitoring-Dashboard.git
+
+2. Go to project dir:
+   ```sh
+   cd Monitoring-Dashboard
+
+3. Install Dependencies:
+   ```sh
+   npm i
+
+4. Run dev server:
+   ```sh
+   npm run dev
+
+   
